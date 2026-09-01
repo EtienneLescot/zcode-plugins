@@ -20,8 +20,9 @@ ZCode 目前没有内置的 worktree 切换器。想让两个会话同时处理�
 
 | 调用方式 | 作用 |
 |---|---|
-| `/git-worktree:worktree` 或 `… list` | 表格列出所有 worktree：名称、分支、未提交文件数、路径；标注主 worktree |
-| `… create <名称> [基准]` | 创建 worktree 与分支 `<名称>`（默认基准：`origin/HEAD`，否则 `main`/`master`，否则 `HEAD`），目录位于仓库同级；占用默认分支前会先警告 |
+| `/git-worktree:worktree` | 默认行为：**创建**——为新会话准备一个隔离 worktree（基于默认分支自动命名、位于仓库同级目录）；输出 File → Open Folder 路径（当前会话仍留在原工作区） |
+| `… create <名称> [基准]` | 同上，但显式指定 worktree/分支 `<名称>` 与基准（`origin/HEAD`，否则 `main`/`master`，否则 `HEAD`）；绝不占用默认分支 |
+| `… list` | 表格列出所有 worktree：名称、分支、未提交文件数、路径；标注主 worktree |
 | `… open <名称>` | 解析 worktree，并给出确切的 File → Open Folder 打开路径 |
 | `… remove <名称>` | 拒绝移除主 worktree；先汇总未提交改动，`--force` 前必须明确确认；随后提供“仅已合并”的分支清理 |
 | `… prune` | 先展示过期条目，再清理注册表；孤儿目录只报告路径与大小，绝不静默删除 |

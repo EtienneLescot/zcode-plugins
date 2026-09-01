@@ -20,8 +20,9 @@ Settings → Plugin Management → Discover → search `git-worktree` → Instal
 
 | Invocation | What it does |
 |---|---|
-| `/git-worktree:worktree` or `… list` | Table of every worktree: name, branch, uncommitted file count, path; main worktree marked |
-| `… create <name> [base]` | Creates worktree + branch `<name>` (default base: `origin/HEAD`, else `main`/`master`, else `HEAD`) as a sibling directory of the repo; warns before occupying a default branch |
+| `/git-worktree:worktree` | Default: **create** — ensures an isolated worktree for a new session (auto-named branch off the default branch, sibling folder); prints the File → Open Folder path, since the current conversation stays in its own workspace |
+| `… create <name> [base]` | Same, with an explicit worktree/branch `<name>` and base (`origin/HEAD`, else `main`/`master`, else `HEAD`); never occupies a default branch |
+| `… list` | Table of every worktree: name, branch, uncommitted file count, path; main worktree marked |
 | `… open <name>` | Resolves the worktree and prints the exact File → Open Folder path |
 | `… remove <name>` | Refuses the main worktree; summarizes uncommitted changes and requires confirmation before `--force`; offers merged-only branch cleanup afterwards |
 | `… prune` | Shows stale entries first, prunes the registry, reports (never silently deletes) orphan directories |
