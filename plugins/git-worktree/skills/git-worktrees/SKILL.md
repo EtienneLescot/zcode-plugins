@@ -15,6 +15,7 @@ A worktree is its own directory holding one checked-out branch. The directory â€
 
 ## Operating safely
 
+- Report state by default: when the user has not explicitly asked to create or remove anything, list worktrees and stop. Creating or removing requires an explicit request.
 - Create: `git worktree add -b <branch> <path> <base>` â€” default path as a sibling of the repository root so nothing untracked appears inside the checkout.
 - Before removing, check `git -C <path> status --porcelain`; show the user what would be lost and require confirmation for `--force`.
 - Delete a branch with `-d` only (merged check); `-D` destroys unmerged work and needs explicit user sign-off.

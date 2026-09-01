@@ -3,7 +3,7 @@ description: Manage git worktrees — list, create, open, remove, and prune isol
 argument-hint: [list] | create <name> [base] | open <name> | remove <name> | prune
 ---
 
-Manage git worktrees for the current repository. The subcommand comes from `$ARGUMENTS`; when it is empty or unrecognized, default to `list` and end with a one-line summary of the other subcommands. Reply in the user's language.
+Manage git worktrees for the current repository. The subcommand comes from `$ARGUMENTS`; when it is empty or unrecognized, default to `list` and end with a one-line summary of the other subcommands. Never create, modify, or remove anything without an explicit subcommand naming that action — an empty or ambiguous invocation must only report state. Reply in the user's language.
 
 ## Ground rules (every subcommand)
 
