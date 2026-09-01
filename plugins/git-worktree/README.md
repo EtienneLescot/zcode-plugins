@@ -29,6 +29,12 @@ Settings → Plugin Management → Discover → search `git-worktree` → Instal
 
 The bundled `git-worktrees` skill auto-triggers on worktree questions and carries the same rules for ad-hoc chat ("can I run three sessions on this repo?").
 
+## Three ways to invoke
+
+1. **Command** — `/git-worktree:worktree` (bare = create with safe defaults; or `list`, `create`, `open`, `remove`, `prune`). The deterministic path: a fixed procedure with the guardrails built in.
+2. **Mention** — type `@Git-Worktree` in the composer to attach the bundled skill to your message. Ask in natural language ("work on the export fix in isolation") and the worktree discipline — default-branch protection, dirty-state checks, one conversation per worktree — applies to whatever you asked.
+3. **Auto-trigger** — the skill also loads by itself when a conversation turns to worktrees or parallel-session isolation, as a safety net when you didn't think to ask.
+
 ## Side effects, permissions, dependencies
 
 - Runs local `git` commands only: `worktree add/remove/list/prune`, `status`, `diff --stat`, `branch -d/-D`. No other binaries, no scripts, no hooks, no MCP servers.

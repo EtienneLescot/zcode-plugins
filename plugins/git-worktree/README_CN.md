@@ -29,6 +29,12 @@ ZCode 目前没有内置的 worktree 切换器。想让两个会话同时处理�
 
 附带的 `git-worktrees` 技能在用户问到 worktree 话题时自动触发，把同样的规则带进日常对话（“这个仓库能同时开三个会话吗？”）。
 
+## 三种调用方式
+
+1. **命令**——`/git-worktree:worktree`（无参数即以安全默认值创建；也可用 `list`、`create`、`open`、`remove`、`prune`）。确定性路径：固定流程，内置防护。
+2. **提及**——在输入框中输入 `@Git-Worktree`，把附带技能挂载到你的消息上。用自然语言提问（“在隔离环境里修 export 的问题”），worktree 纪律——默认分支保护、脏状态检查、一会话一 worktree——就会作用于你所请求的内容。
+3. **自动触发**——当对话涉及 worktree 或并行会话隔离时，技能也会自行加载，在你没想到要求时兜底。
+
 ## 副作用、权限与依赖
 
 - 只运行本地 `git` 命令：`worktree add/remove/list/prune`、`status`、`diff --stat`、`branch -d/-D`。无其他二进制、无脚本、无 hooks、无 MCP 服务器。
