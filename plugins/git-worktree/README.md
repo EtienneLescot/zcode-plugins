@@ -1,0 +1,40 @@
+# git-worktree
+
+Git worktree management for parallel ZCode sessions — a Claude-Code-style `/worktree` experience: list, create, open, remove, and prune isolated working copies, with guardrails against the two classic accidents (deleting uncommitted work, and fighting over a branch two worktrees cannot share).
+
+Addresses the UX gaps tracked in [zai-org/feedback#132](https://github.com/zai-org/feedback/issues/132) and [#220](https://github.com/zai-org/feedback/issues/220).
+
+## Why
+
+ZCode has no built-in worktree switcher, so users who want two conversations on one repository — one per feature — either collide in the same folder or hand-roll git commands and hit cryptic errors like `branch is already used by worktree`. This plugin makes the workflow first-class:
+
+- **Isolation**: each conversation gets its own worktree (directory + branch), so parallel sessions never overwrite each other's uncommitted changes.
+- **Clarity**: `list` shows every worktree with its branch and dirty state; errors are translated into what to do next.
+- **Safety**: dirty worktrees are never removed without explicit confirmation; the main worktree and merged-branch checks protect against the two easiest ways to lose work.
+
+## Install
+
+Settings → Plugin Management → Discover → search `git-worktree` → Install. Requires git 2.20 or newer on your `PATH`.
+
+## Usage
+
+| Invocation | What it does |
+|---|---|
+| `/git-worktree:worktree` or `… list` | Table of every worktree: name, branch, uncommitted file count, path; main worktree marked |
+| `… create <name> [base]` | Creates worktree + branch `<name>` (default base: `origin/HEAD`, else `main`/`master`, else `HEAD`) as a sibling directory of the repo; warns before occupying a default branch |
+| `… open <name>` | Resolves the worktree and prints the exact File → Open Folder path |
+| `… remove <name>` | Refuses the main worktree; summarizes uncommitted changes and requires confirmation before `--force`; offers merged-only branch cleanup afterwards |
+| `… prune` | Shows stale entries first, prunes the registry, reports (never silently deletes) orphan directories |
+
+The bundled `git-worktrees` skill auto-triggers on worktree questions and carries the same rules for ad-hoc chat ("can I run three sessions on this repo?").
+
+## Side effects, permissions, dependencies
+
+- Runs local `git` commands only: `worktree add/remove/list/prune`, `status`, `diff --stat`, `branch -d/-D`. No other binaries, no scripts, no hooks, no MCP servers.
+- Creates directories (default: siblings of your repository root) and deletes worktree directories — every destructive step requires explicit confirmation first.
+- No network access, no credentials, no data leaves the machine.
+- Cross-platform: plain git invocations, no shell-specific syntax; tested path handling on Windows and POSIX.
+
+## Versioning and license
+
+`0.1.0` — manifest and marketplace entry kept in lockstep. Apache-2.0, same license as the [zcode-plugins](https://github.com/zai-org/zcode-plugins) repository. No third-party code or assets.
