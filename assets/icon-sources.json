@@ -1328,6 +1328,16 @@
     "sha256": "29a6ede33f370301db496f40170c0afa585f6a4d5a8c68c372fd83e2d441606f"
   },
   {
+    "name": "obsidian",
+    "icon": "obsidian/icon.png",
+    "source": "https://obsidian.md/favicon.svg",
+    "matchedBy": "official-homepage-favicon-svg-converted-padded",
+    "homepage": "https://obsidian.md",
+    "mimeType": "image/png",
+    "sha256": "6e4b6881c3e3c304cbcaa53ffb202aa68fece3a0082a451f1638ff2c730a1285",
+    "transform": "Render SVG at 216x216 centered on a transparent 256x256 canvas (20px padding)."
+  },
+  {
     "name": "oracle-ai-data-platform-workbench-databricks-migrator",
     "icon": "oracle-ai-data-platform-workbench-databricks-migrator/icon.png",
     "source": "https://docs.oracle.com/sp_common/site-template/ohc-common/img/favicon.ico",
